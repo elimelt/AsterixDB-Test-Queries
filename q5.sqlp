@@ -1,0 +1,14 @@
+
+SELECT C.`-car_code` as country_code, 
+C.name AS country_name, seas
+
+FROM country.world C
+LET seas = (
+    SELECT S AS sea
+    FROM sea.world S
+    LET B = split(S.`-country`, ' ')
+    WHERE some e in B satisfies C.`-car_code` = e        
+) 
+
+WHERE array_count(seas) >= 2
+ORDER BY array_count(seas) DESC;

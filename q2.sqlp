@@ -1,0 +1,5 @@
+SELECT y.name as country, y.population as population, 
+array_count(religions) as num_religions
+FROM geo.world x, x.mondial.country y
+LET religions = CASE WHEN is_array(y.religions) THEN y.religions 
+ELSE [y.religions] END;

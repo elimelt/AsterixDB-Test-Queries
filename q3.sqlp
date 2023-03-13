@@ -1,0 +1,8 @@
+
+SELECT DISTINCT z.`#text` as religion, count(y.name) as num_countries
+FROM geo.world x, x.mondial.country y, 
+CASE WHEN is_array(y.religions) THEN y.religions 
+WHEN y.religions is missing  THEN []
+ELSE [y.religions] END z
+GROUP BY z.`#text`
+ORDER BY religion;
